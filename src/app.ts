@@ -15,6 +15,7 @@ dotenv.config();
  * Internal Imports
  */
 import { Routes } from "./common/common.routes";
+import { Billing } from "./billing/billing.routes";
 
 /**
  * App Variables
@@ -36,5 +37,12 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(cors(corsOptions));
+
+routes.push(new Billing(app));
+
+routes.forEach((route: Routes) => {
+  route.configureRoutes();
+  console.log(`Configured routes -->  ${route.getName()}`);
+});
 
 export default app;

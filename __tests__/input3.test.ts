@@ -45,6 +45,7 @@ describe("POST calculate bill", () => {
           isImported: true,
           priceWithTax: 32.19,
           itemTax: 4.2,
+          taxPercentage: 15
         },
         {
           name: "perfume",
@@ -54,6 +55,7 @@ describe("POST calculate bill", () => {
           isImported: false,
           priceWithTax: 20.89,
           itemTax: 1.9,
+          taxPercentage: 10
         },
         {
           name: "headache pills",
@@ -63,6 +65,7 @@ describe("POST calculate bill", () => {
           isImported: false,
           priceWithTax: 9.75,
           itemTax: 0,
+          taxPercentage: 0
         },
         {
           name: "chocolates",
@@ -72,6 +75,7 @@ describe("POST calculate bill", () => {
           isImported: true,
           priceWithTax: 11.85,
           itemTax: 0.6,
+          taxPercentage: 5
         },
       ],
       totalSalesTax: 6.7,

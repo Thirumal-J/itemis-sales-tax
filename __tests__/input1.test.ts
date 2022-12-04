@@ -1,4 +1,4 @@
-import { describe } from "@jest/globals";
+import { describe, it, expect } from "@jest/globals";
 import supertest from "supertest";
 import app from "../src/app";
 
@@ -38,6 +38,7 @@ describe("POST calculate bill", () => {
           isImported: false,
           priceWithTax: 12.49,
           itemTax: 0,
+          taxPercentage: 0
         },
         {
           name: "music CD",
@@ -47,6 +48,7 @@ describe("POST calculate bill", () => {
           isImported: false,
           priceWithTax: 16.49,
           itemTax: 1.5,
+          taxPercentage: 10
         },
         {
           name: "chocolate bar",
@@ -56,6 +58,7 @@ describe("POST calculate bill", () => {
           isImported: false,
           priceWithTax: 0.85,
           itemTax: 0,
+          taxPercentage: 0
         },
       ],
       totalSalesTax: 1.5,
@@ -70,3 +73,5 @@ describe("POST calculate bill", () => {
     expect(response.body).toEqual(mockResponse);
   });
 });
+
+
