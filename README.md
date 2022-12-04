@@ -1,25 +1,4 @@
-Based on the conditions, input and output given, the following assumptions were made.
-
-1\. Input and Output are designed in JSON format.
-
-2\. The input object is considered like a shopping cart with multiple items purchased.
-
-3\. Input = array of items purchased. And each purchase 'item' is assumed to have the following attributes: name, category, quantity, price, isImported.
-
-    - category of the input object is assumed to have only 4 values: 'food', 'medicine', 'books', 'others'
-
-    - basic sales tax exemption is maintained in an array, so that it can be updated if needed.
-
-4\. Output object is assumed to return with the following attributes: totalItems, totalSalesTax, totalCost.
-
-    - totalItems: an array of itemBill. Each itemBill have all the input attributes of the item, along with priceWithTax, itemTax, taxPercentage
-
-    - totalSalesTax: sum of all itemTax
-
-    - totalCost: sum of all priceWithTax of all itemsitemis-sales-tax
-================
-
-Given Requirement:
+## Given Requirement:
 ------------------
 
 Basic sales tax is applicable at a rate of 10% on all goods, except books, food, and medical products, that are exempt. Import duty is an additional sales tax applicable on all imported goods at a rate of 5%, with no exemptions. When I purchase items, I receive a receipt which lists the name of all the items and their price (including tax), finishing with the total cost of the items and the total amounts of sales taxes paid. The rounding rules for sales tax are that for a tax rate of n%, a shelf price of p contains (np/100 rounded up to the nearest 0.05) amount of sales tax.
