@@ -67,3 +67,43 @@ The following assumptions were made based on the conditions, input and output.
 -   totalItems: an array of itemBill. Each itemBill have all the input attributes of the item, along with priceWithTax, itemTax, taxPercentage
 -   totalSalesTax: sum of all itemTax
 -   totalCost: sum of all priceWithTax of all items
+
+
+## Steps to do:
+
+1. git clone https://github.com/Thirumal-J/itemis-sales-tax.git
+2. cd itemis-sales-tax
+3. npm install
+4. npm start
+5. you can see the following message in the terminal:
+
+``Configured routes -->  Billing Route ``\
+``Server up and running at http://localhost:5000``\
+
+5. use a postman app to access the API for calculating the bill.
+
+`` URL : http://localhost:5000/calculate-bill ``\
+`` HTTP METHOD : POST ``\
+``PAYLOAD : [
+    {
+        "name": "book",
+        "category": "books",
+        "price": 12.49,
+        "quantity": 1,
+        "isImported": false
+    },
+    {
+        "name": "music CD",
+        "category": "others",
+        "price": 14.99,
+        "quantity": 1,
+        "isImported": false
+    },
+    {
+        "name": "chocolate bar",
+        "category": "food",
+        "price": 0.85,
+        "quantity": 1,
+        "isImported": false
+    }
+] ``
