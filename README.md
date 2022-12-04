@@ -107,3 +107,7 @@ The following assumptions were made based on the conditions, input and output.
         "isImported": false
     }
 ] ``
+
+6. you can also try running all the test-cases for the project using the following command.
+
+``npm test``
