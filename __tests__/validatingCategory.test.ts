@@ -1,4 +1,4 @@
-import { describe } from "@jest/globals";
+import { describe, it, expect } from "@jest/globals";
 import supertest from "supertest";
 import app from "../src/app";
 
@@ -10,7 +10,7 @@ describe("POST calculate bill", () => {
         category: "perfume",
         price: 27.99,
         quantity: 1,
-        isImported: true,
+        isImported: true
       }
     ];
 

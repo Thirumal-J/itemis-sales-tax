@@ -31,6 +31,7 @@ describe("POST calculate bill", () => {
           isImported: true,
           priceWithTax: 10.5,
           itemTax: 0.5,
+          taxPercentage: 5
         },
         {
           name: "perfume",
@@ -40,6 +41,7 @@ describe("POST calculate bill", () => {
           isImported: true,
           priceWithTax: 54.65,
           itemTax: 7.15,
+          taxPercentage: 15
         },
       ],
       totalSalesTax: 7.65,

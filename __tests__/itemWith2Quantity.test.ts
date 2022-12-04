@@ -1,4 +1,4 @@
-import { describe } from "@jest/globals";
+import { describe, it, expect } from "@jest/globals";
 import supertest from "supertest";
 import app from "../src/app";
 
@@ -11,24 +11,25 @@ describe("POST calculate bill", () => {
         price: 12.49,
         quantity: 2,
         isImported: false,
-      }
+      },
     ];
 
     const mockResponse = {
-      "totalItems": [
-          {
-              "name": "book",
-              "category": "books",
-              "price": 12.49,
-              "quantity": 2,
-              "isImported": false,
-              "priceWithTax": 24.98,
-              "itemTax": 0
-          }
+      totalItems: [
+        {
+          name: "book",
+          category: "books",
+          price: 12.49,
+          quantity: 2,
+          isImported: false,
+          priceWithTax: 24.98,
+          itemTax: 0,
+          taxPercentage: 0,
+        },
       ],
-      "totalSalesTax": 0,
-      "totalCost": 24.98
-  };
+      totalSalesTax: 0,
+      totalCost: 24.98,
+    };
 
     const response = await supertest(app)
       .post(`/calculate-bill`)
