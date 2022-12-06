@@ -2,26 +2,27 @@
  * Middleware - Request, Response, NextFunction Handlers of Billing
  */
 
- import express from "express";
- import billingService from "./billing.service";
- import { item, itemBill, finalBill, validationStatus } from "./billing.interface"
- 
- class BillingMiddleware {
-     validateItemCategory(
-         req:express.Request,
-         res:express.Response,
-         next:express.NextFunction
-     ) {
-         const items: item[] = req.body;
-         const status:validationStatus = billingService.validateItemCategory(items);
-         if(status === validationStatus.SUCCESS){
-             next();
-         } else {
-             res.status(404).send({
-                 errorMsg:`One or more item category is not from the allowed categories`
-             })
-         }
-     }
- }
- 
- export default new BillingMiddleware();
+import express from "express";
+import { Item } from "./billing.interface";
+import BillingService from "./billing.service";
+import { AppConstants } from './../common/common.constants';
+
+class BillingMiddleware {
+  validateItemCategory(
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction
+  ) {
+    const items: Item[] = req.body;
+    const status: boolean = BillingService.validateItemCategory(items);
+    if (status) {
+      next();
+    } else {
+      res.status(AppConstants.ERROR_STATUS_CODE).send({
+        errorMsg: AppConstants.WRONG_ITEM_CATEGORY_MSG,
+      });
+    }
+  }
+}
+
+export default new BillingMiddleware();

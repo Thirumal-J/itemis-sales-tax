@@ -2,29 +2,24 @@
  * Billing Related Interfaces
  */
 
- export enum categories {
+ export enum Categories {
     OTHERS = "others", 
     FOOD = "food", 
     MEDICINE = "medicine", 
     BOOKS = "books"
 }
 
-export enum validationStatus {
-    SUCCESS = "SUCCESS",
-    FAILED = "FAILED"
-}
-
-export interface item {
+export interface Item {
   name: string;
-  category: categories;
+  category: Categories;
   price: number;
   quantity: number;
   isImported: boolean;
 };
 
-export interface itemBill {
+export interface ItemBill {
     name:string;
-    category:categories;
+    category:Categories;
     price:number;
     quantity:number;
     isImported: boolean;
@@ -33,8 +28,8 @@ export interface itemBill {
     taxPercentage:number;
 }
 
-export interface finalBill {
-    totalItems: itemBill[];
+export interface TotalBill {
+    totalItems: ItemBill[];
     totalSalesTax: number;
-    totalCost:number;
+    totalPrice:number;
 }
