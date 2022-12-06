@@ -14,8 +14,8 @@ dotenv.config();
 /**
  * Internal Imports
  */
-import { Routes } from "./common/common.routes";
 import { Billing } from "./billing/billing.routes";
+import { Routes } from "./common/common.routes";
 
 /**
  * App Variables
@@ -27,8 +27,6 @@ const routes: Routes[] = [];
 const corsOptions = {
   origin: `http://localhost:${process.env.CLIENT_PORT}`,
   methods: "GET,PUT,POST,DELETE",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
 };
 
 /**
