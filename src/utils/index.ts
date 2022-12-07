@@ -1,11 +1,10 @@
 /**
- * All Utility Functions for the application
+ * All utility functions for the application
  */
 
-class utils {
+class Utils {
   /**
    * @description Rounds the given value upto nearest given rounding factor and given decimal digits
-   *
    * @param value
    * @param roundingFactor
    * @param decimalDigits
@@ -40,4 +39,4 @@ class utils {
   }
 }
 
-export default new utils();
+export default new Utils();

@@ -1,5 +1,5 @@
 /**
- * Billing Middleware - Mediator Handles Request, Response, NextFunction of Billing
+ *  This mediator handles Request, Response, NextFunction of Billing
  */
 
 import express from "express";
@@ -10,9 +10,9 @@ import BillingService from "./billing.service";
 class BillingMiddleware {
 
   /**
-   * @description Validates the given all item categories exist or not
+   * @description Checks whether all the item categories are valid or not
    * @param req   Purchased items
-   * @param res   True if all item categories exist else false
+   * @param res   Object to send back the status code and error msg
    * @param next  Redirects to the next function of the routing layer
    */
   validateAllItemsCategory(

@@ -1,7 +1,7 @@
 /**
  * All the business logic of billing will be here
  */
-import utils from "../utils";
+import Utils from "../utils";
 import { AppConstants } from "./../common/common.constants";
 import { Categories, Item, ItemBill, TotalBill } from "./billing.interface";
 
@@ -29,12 +29,12 @@ class BillingService {
       totalBill.totalPrice += itemBill.priceWithTax;
     });
 
-    totalBill.totalSalesTax = utils.roundToFixedDecimalDigits(
+    totalBill.totalSalesTax = Utils.roundToFixedDecimalDigits(
       totalBill.totalSalesTax,
       AppConstants.DECIMAL_DIGITS
     );
 
-    totalBill.totalPrice = utils.roundToFixedDecimalDigits(
+    totalBill.totalPrice = Utils.roundToFixedDecimalDigits(
       totalBill.totalPrice,
       AppConstants.DECIMAL_DIGITS
     );
@@ -93,12 +93,12 @@ class BillingService {
       itemBill.priceWithTax = item.price * item.quantity;
       //no need to update itemBill's itemTax since it is already 0
     } else {
-      itemBill.itemTax = utils.roundUp(
+      itemBill.itemTax = Utils.roundUp(
         item.price * item.quantity * itemBill.itemTax,
         AppConstants.ROUNDING_FACTOR_SALES_TAX,
         AppConstants.DECIMAL_DIGITS
       );
-      itemBill.priceWithTax = utils.roundToFixedDecimalDigits(
+      itemBill.priceWithTax = Utils.roundToFixedDecimalDigits(
         item.price * item.quantity + itemBill.itemTax,
         AppConstants.DECIMAL_DIGITS
       );
@@ -125,7 +125,7 @@ class BillingService {
       ? itemTax
       : itemTax + AppConstants.BASIC_SALES_TAX;
 
-    return utils.roundToFixedDecimalDigits(
+    return Utils.roundToFixedDecimalDigits(
       itemTax,
       AppConstants.DECIMAL_DIGITS
     );
