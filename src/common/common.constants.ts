@@ -14,7 +14,7 @@ export class AppConstants {
     Categories.FOOD,
   ]; // Categories that are exempted from basic sales tax
 
-  static readonly WRONG_ITEM_CATEGORY_MSG:string = `One or more item category is not from the allowed categories`;
+  static readonly WRONG_ITEM_CATEGORY_MSG:string = `One or more item category is not from the allowed categories`;  
   static readonly ERROR_STATUS_CODE:number = 404;
   static readonly SUCCESS_STATUS_CODE:number = 200;
 

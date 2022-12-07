@@ -7,9 +7,9 @@ import { Categories, Item, ItemBill, TotalBill } from "./billing.interface";
 
 class BillingService {
   /**
-   * Method: Calculates the Total Bill
-   * @param items - Array of Item
-   * @returns Total Bill
+   * @description Calculates the total bill of the given items
+   * @param items Array of items
+   * @returns     Total Bill of all items with calculated sales tax, cost and separate item bills
    */
   calculateBill(items: Item[]): TotalBill {
     const totalBill: TotalBill = {
@@ -43,9 +43,9 @@ class BillingService {
   }
 
   /**
-   * Function to validate all input item category
-   * @param items - Array of Item
-   * @returns boolean
+   * @description  Checks whether all the input item categories are valid or not
+   * @param items  Array of Item
+   * @returns      True if all item categories are valid, else false
    */
   validateAllItemsCategory(items: Item[]): boolean {
     let isItemCategoryExist = true;
@@ -59,18 +59,18 @@ class BillingService {
   }
 
   /**
-   * Function to validate the given item category exist or not
-   * @param item
-   * @returns boolean
+   * @description Checks whether the given item category is valid or not
+   * @param item  An item
+   * @returns     True if item category is valid else false
    */
   validateItemCategory(item: Item): boolean {
     return Object.values(Categories).includes(item.category);
   }
 
   /**
-   * Funtion to calculate and update a item's bill
-   * @param item
-   * @returns itemBill
+   * @description Calculates and updates sales tax, tax percentage, and price of the given item
+   * @param item  An Item
+   * @returns     Item bill
    */
   updateItemBill(item: Item): ItemBill {
     const itemBill: ItemBill = {
@@ -108,9 +108,9 @@ class BillingService {
   }
 
   /**
-   * Function to calculate the tax of an item
-   * @param item
-   * @returns tax as number
+   * @description Calculate the tax of an item
+   * @param item  An Item
+   * @returns     Tax value of the item
    */
   calculateItemTax(item: Item): number {
     let itemTax = 0; // First Assuming the each item's tax as 0

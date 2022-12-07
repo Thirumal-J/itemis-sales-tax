@@ -8,7 +8,14 @@ import { Item } from "./billing.interface";
 import BillingService from "./billing.service";
 
 class BillingMiddleware {
-  validateItemCategory(
+
+  /**
+   * @description Validates the given all item categories exist or not
+   * @param req   Purchased items
+   * @param res   True if all item categories exist else false
+   * @param next  Redirects to the next function of the routing layer
+   */
+  validateAllItemsCategory(
     req: express.Request,
     res: express.Response,
     next: express.NextFunction

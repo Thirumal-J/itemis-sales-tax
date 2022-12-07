@@ -1,5 +1,6 @@
 /**
- * Billing Related Interfaces
+ * Billing interfaces and required enums
+ * 
  */
 
 export enum Categories {
