@@ -48,8 +48,8 @@ Total: 65.15
 Sales Taxes: 6.70\
 Total: 74.68
 
-Assumptions
------------
+## Assumptions
+-----------------
 
 The following assumptions were made based on the conditions, input and output.
 
@@ -68,24 +68,51 @@ The following assumptions were made based on the conditions, input and output.
 -   totalSalesTax: sum of all itemTax
 -   totalCost: sum of all priceWithTax of all items
 
-
-## Steps to do:
+## Steps to access the application:
 
 1. git clone https://github.com/Thirumal-J/sales-tax.git
-2. cd itemis-sales-tax
-3. npm install
-4. npm start
-5. you can see the following message in the terminal:
+2. Open the the repository folder in Visual studio code or using a terminal. Use the following command to change directory via terminal if necessary:
 
-``Configured routes -->  Billing Route ``\
-``Server up and running at http://localhost:5000``
+`` cd sales-tax``
 
-5. Use the following command to run all the test-cases for the project.
+Once the above steps are done, use any of the following methods to access the application.
+
+#### Method 1 - Using Docker
+1. If you have docker installed (tested with Docker version 20.10.21), Open terminal and run the following commands:
+
+``sudo docker build -t sales-tax-app .``
+
+2. Above command will install all the required packages and creates a docker image.
+
+3. Run the following command to run and check all the test cases for the application:
+
+``sudo docker run sales-tax-app:latest``
+
+4. Now you can see all the test cases result.
+
+#### Method 2 - Using NPM
+1. Open terminal and use the following command: 
+
+``npm install``
+
+2. Once all the necassary packages got imported, run the following command to run all the test-cases for the project:
 
 ``npm test``
 
-6. Alternatively, you can also use a postman app to access the API for calculating the bill.
+3. Now you can see all the test cases result.
 
+#### Method 3 - Using NPM and Postman
+1.  Open terminal and use the following command: 
+
+``npm install``
+
+2. Once all the necassary packages got imported, run the following command to start the application:
+
+``npm start``
+
+3. Now, you can use the postman app to access the API for calculating the bill.
+
+Sample API:\
 `` URL : http://localhost:5000/calculate-bill ``\
 `` HTTP METHOD : POST ``\
 ``PAYLOAD : [
@@ -111,3 +138,44 @@ The following assumptions were made based on the conditions, input and output.
         "isImported": false
     }
 ] ``
+
+4. Once you send the api request you will see the following response:
+
+``Status Code : 200``\
+``Respose Body :``\
+``{
+    "totalItems": [
+        {
+            "name": "book",
+            "category": "books",
+            "price": 12.49,
+            "quantity": 1,
+            "isImported": false,
+            "priceWithTax": 12.49,
+            "itemTax": 0,
+            "taxPercentage": 0
+        },
+        {
+            "name": "music CD",
+            "category": "others",
+            "price": 14.99,
+            "quantity": 1,
+            "isImported": false,
+            "priceWithTax": 16.49,
+            "itemTax": 1.5,
+            "taxPercentage": 10
+        },
+        {
+            "name": "chocolate bar",
+            "category": "food",
+            "price": 0.85,
+            "quantity": 1,
+            "isImported": false,
+            "priceWithTax": 0.85,
+            "itemTax": 0,
+            "taxPercentage": 0
+        }
+    ],
+    "totalSalesTax": 1.5,
+    "totalCost": 29.83
+}``
