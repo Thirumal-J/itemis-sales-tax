@@ -1,6 +1,6 @@
 /**
  * Routes of billing extended from the common routes.
- *   Helps in coordinating between middleware and controller.
+ *   Coordinates middleware and controller layers.
  */
 
 import express from "express";
@@ -12,7 +12,7 @@ export class Billing extends Routes {
   constructor(app: express.Application) {
     super(app, "Billing Route");
   }
-
+  
   configureRoutes(): express.Application {
     this.app
       .route("/calculate-bill")

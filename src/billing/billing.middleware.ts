@@ -1,11 +1,11 @@
 /**
- * Middleware - Request, Response, NextFunction Handlers of Billing
+ * Billing Middleware - Mediator Handles Request, Response, NextFunction of Billing
  */
 
 import express from "express";
+import { AppConstants } from "./../common/common.constants";
 import { Item } from "./billing.interface";
 import BillingService from "./billing.service";
-import { AppConstants } from './../common/common.constants';
 
 class BillingMiddleware {
   validateItemCategory(
@@ -14,7 +14,7 @@ class BillingMiddleware {
     next: express.NextFunction
   ) {
     const items: Item[] = req.body;
-    const status: boolean = BillingService.validateItemCategory(items);
+    const status: boolean = BillingService.validateAllItemsCategory(items);
     if (status) {
       next();
     } else {
