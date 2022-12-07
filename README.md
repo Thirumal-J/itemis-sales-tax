@@ -71,16 +71,20 @@ The following assumptions were made based on the conditions, input and output.
 
 ## Steps to do:
 
-1. git clone https://github.com/Thirumal-J/itemis-sales-tax.git
+1. git clone https://github.com/Thirumal-J/sales-tax.git
 2. cd itemis-sales-tax
 3. npm install
 4. npm start
 5. you can see the following message in the terminal:
 
 ``Configured routes -->  Billing Route ``\
-``Server up and running at http://localhost:5000``\
+``Server up and running at http://localhost:5000``
 
-5. use a postman app to access the API for calculating the bill.
+5. Use the following command to run all the test-cases for the project.
+
+``npm test``
+
+6. Alternatively, you can also use a postman app to access the API for calculating the bill.
 
 `` URL : http://localhost:5000/calculate-bill ``\
 `` HTTP METHOD : POST ``\
@@ -107,7 +111,3 @@ The following assumptions were made based on the conditions, input and output.
         "isImported": false
     }
 ] ``
-
-6. you can also try running all the test-cases for the project using the following command.
-
-``npm test``
