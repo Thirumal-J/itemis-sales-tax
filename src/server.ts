@@ -1,5 +1,5 @@
 /**
- * SERVER Activation
+ * Server Activation
  */
 import app from "./app";
 
