@@ -1,5 +1,5 @@
 /**
- * This is only for SERVER Activation, so that it won't affect the test cases
+ * SERVER Activation
  */
 import app from "./app";
 

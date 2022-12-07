@@ -6,34 +6,72 @@ import { AppConstants } from "./../common/common.constants";
 import { Categories, Item, ItemBill, TotalBill } from "./billing.interface";
 
 class BillingService {
+  /**
+   * Method: Calculates the Total Bill
+   * @param items - Array of Item
+   * @returns Total Bill
+   */
   calculateBill(items: Item[]): TotalBill {
     const totalBill: TotalBill = {
       totalItems: [],
       totalSalesTax: 0,
       totalPrice: 0,
     };
+
+    // Updates each item's bill separately, then pushed into TotalBill
     items.map((item: Item) => {
       totalBill.totalItems.push(this.updateItemBill(item));
     });
+
+    // Updates the total sales tax and total price
     totalBill.totalItems.map((itemBill: ItemBill) => {
       totalBill.totalSalesTax += itemBill.itemTax;
       totalBill.totalPrice += itemBill.priceWithTax;
     });
-    totalBill.totalSalesTax = utils.round2Decimals(totalBill.totalSalesTax);
-    totalBill.totalPrice = utils.round2Decimals(totalBill.totalPrice);
+
+    totalBill.totalSalesTax = utils.roundToFixedDecimalDigits(
+      totalBill.totalSalesTax,
+      AppConstants.DECIMAL_DIGITS
+    );
+
+    totalBill.totalPrice = utils.roundToFixedDecimalDigits(
+      totalBill.totalPrice,
+      AppConstants.DECIMAL_DIGITS
+    );
+
     return totalBill;
   }
 
-  validateItemCategory(items: Item[]): boolean {
+  /**
+   * Function to validate all input item category
+   * @param items - Array of Item
+   * @returns boolean
+   */
+  validateAllItemsCategory(items: Item[]): boolean {
     let isItemCategoryExist = true;
     items.map((item: Item) => {
-      if (!Object.values(Categories).includes(item.category)) {
+      if (!this.validateItemCategory(item)) {
         isItemCategoryExist = false;
       }
     });
+
     return isItemCategoryExist;
   }
 
+  /**
+   * Function to validate the given item category exist or not
+   * @param item
+   * @returns boolean
+   */
+  validateItemCategory(item: Item): boolean {
+    return Object.values(Categories).includes(item.category);
+  }
+
+  /**
+   * Funtion to calculate and update a item's bill
+   * @param item
+   * @returns itemBill
+   */
   updateItemBill(item: Item): ItemBill {
     const itemBill: ItemBill = {
       name: item.name,
@@ -46,23 +84,34 @@ class BillingService {
       taxPercentage: 0,
     };
 
+    // Update the item tax
     itemBill.itemTax = this.calculateItemTax(item);
-    // Updating the tax percentage for the item
+
+    // Update the tax percentage of the item
     itemBill.taxPercentage = itemBill.itemTax * 100;
     if (itemBill.itemTax === 0) {
       itemBill.priceWithTax = item.price * item.quantity;
-      //no need to update itemBill's itemTax since it will be 0
+      //no need to update itemBill's itemTax since it is already 0
     } else {
-      itemBill.itemTax = utils.roundingToPointZeroFive(
-        item.price * item.quantity * itemBill.itemTax
+      itemBill.itemTax = utils.roundUp(
+        item.price * item.quantity * itemBill.itemTax,
+        AppConstants.ROUNDING_FACTOR_SALES_TAX,
+        AppConstants.DECIMAL_DIGITS
       );
-      itemBill.priceWithTax = utils.round2Decimals(
-        item.price * item.quantity + itemBill.itemTax
+      itemBill.priceWithTax = utils.roundToFixedDecimalDigits(
+        item.price * item.quantity + itemBill.itemTax,
+        AppConstants.DECIMAL_DIGITS
       );
     }
+
     return itemBill;
   }
 
+  /**
+   * Function to calculate the tax of an item
+   * @param item
+   * @returns tax as number
+   */
   calculateItemTax(item: Item): number {
     let itemTax = 0; // First Assuming the each item's tax as 0
 
@@ -76,7 +125,10 @@ class BillingService {
       ? itemTax
       : itemTax + AppConstants.BASIC_SALES_TAX;
 
-    return utils.round2Decimals(itemTax); // need to round the finaltax because of typescript decimal addition giving extra values
+    return utils.roundToFixedDecimalDigits(
+      itemTax,
+      AppConstants.DECIMAL_DIGITS
+    );
   }
 }
 
